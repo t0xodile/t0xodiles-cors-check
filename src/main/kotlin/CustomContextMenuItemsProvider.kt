@@ -205,7 +205,7 @@ class CustomContextMenuItemsProvider(private val api: MontoyaApi, private val th
 
                     //Add the list of subdomains to the map with the parent domain as they key
                     synchronized(allDomains) {
-                        allDomains[topPrivateDomain] = subDomainsForParent
+                        allDomains.getOrPut(topPrivateDomain) { mutableListOf() }.addAll(subDomainsForParent)
                     }
 
                 } catch (e: Exception) {
